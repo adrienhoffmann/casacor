@@ -1,0 +1,554 @@
+:root {
+    --bg: #f8f8fa;
+    --accent: #0a74da;
+    --text: #222;
+    --container-max: 1100px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+html, body {
+    height: 100%
+}
+
+body {
+    font-family: 'Crimson Text', serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.45;
+}
+
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.site-header {
+    background: #fff;
+    border-bottom: 1px solid #e6e6eb;
+}
+
+    .site-header .container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem
+    }
+
+    .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+.logo {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--accent)
+}
+
+/* Google Translate widget styling */
+.translate-widget {
+    font-size: 0.9rem;
+}
+
+.goog-te-gadget { font-family: var(--text); }
+.goog-te-gadget .goog-te-combo { padding: 4px 8px; border: 1px solid #ccc; border-radius: 4px; }
+
+.main-nav a {
+    margin-left: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.hero {
+    background: linear-gradient(90deg,rgba(10,116,218,0.07),transparent);
+    padding: 3rem 0;
+    text-align: center;
+}
+
+    .hero h2 {
+        font-size: 1.75rem;
+        margin-bottom: .5rem;
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+    }
+
+    .hero-location {
+        color: #666;
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+    }
+
+/* PRESENTATION SECTION */
+.presentation {
+    padding: 3rem 0;
+}
+
+.presentation h3,
+.description h3,
+.gallery h3,
+.location h3,
+.contact h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
+
+.presentation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.presentation-text p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-family: 'Crimson Text', serif;
+}
+
+.presentation-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.highlight-box {
+    background: #f0f4f8;
+    border-left: 4px solid var(--accent);
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.highlight-box h4 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .presentation-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* DESCRIPTION SECTION */
+.description {
+    background: #f8f9fa;
+    padding: 3rem 0;
+}
+
+.description-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+    font-family: 'Crimson Text', serif;
+}
+
+.gallery {
+    padding: 2rem 0
+}
+
+    .gallery .grid {
+        display: grid;
+        gap: 0.75rem;
+        grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    }
+
+    .gallery img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 60px;
+        display: block;
+    }
+
+/* Thumbnail wrapper so we can show a hover cross */
+.thumb {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.thumb img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: inherit;
+    transition: transform .18s ease;
+}
+
+.thumb:hover img {
+    transform: scale(1.03);
+}
+
+/* small circular cross that appears on hover (top-right)
+   the "brilliance" is a subtle shadow/scale on hover */
+.thumb::after {
+    content: "✕";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* dark rounded cross that becomes light on hover */
+    background: #2f3438;
+    color: #f6f7f8;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    opacity: 0;
+    transform: scale(.85);
+    transition: opacity .15s ease, transform .15s ease, box-shadow .15s ease, background .12s ease, color .12s ease;
+    pointer-events: none;
+}
+
+.thumb:hover::after {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    background: #e9ebec; /* lighter on hover */
+    color: #222;
+}
+
+/* Lightbox / modal styles */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.7);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .18s ease;
+    z-index: 9999;
+}
+
+.lightbox.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 92%;
+    max-height: 92%;
+    padding: 6px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    border: 6px solid rgba(255,255,255,0.95);
+}
+
+.lightbox-content img {
+    display: block;
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 4px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    color: #222;
+    font-size: 20px;
+    line-height: 0;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.lightbox-close:focus {
+    outline: 3px solid rgba(10,116,218,0.2);
+}
+
+/* Prev / Next nav buttons */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    /* dark rounded arrow that becomes light on hover */
+    background: #2f3438; /* dark gray */
+    color: #f6f7f8; /* light arrow */
+    font-size: 40px;
+    line-height: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.28);
+    transition: background .15s ease, color .15s ease, transform .12s ease, box-shadow .12s ease;
+}
+
+.lightbox-prev { left: -86px; }
+.lightbox-next { right: -86px; }
+
+.lightbox-nav:hover {
+    background: #e9ebec; /* lighter on hover */
+    color: #222; /* dark icon on hover */
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.32);
+}
+
+@media (max-width: 700px) {
+    .lightbox-prev { left: 6px; }
+    .lightbox-next { right: 6px; }
+    .lightbox-nav { width: 56px; height: 56px; font-size: 28px; }
+    .lightbox-content { border-width: 4px; }
+}
+
+.note {
+    margin-top: .5rem;
+    color: #666;
+    font-size: .9rem
+}
+
+/* LOCATION SECTION */
+.location {
+    padding: 3rem 0;
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.location-info {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.location-info h4 {
+    color: var(--accent);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.location-info h4:first-child {
+    margin-top: 0;
+}
+
+.location-info p {
+    color: #555;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .location-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* CONTACT SECTION */
+.contact {
+    background: linear-gradient(90deg,rgba(10,116,218,0.07),transparent);
+    padding: 3rem 0;
+}
+
+.contact-content {
+    text-align: center;
+}
+
+.contact-content p {
+    margin-bottom: 1rem;
+}
+
+.contact-info {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+    font-size: 1.05rem;
+}
+
+.contact-info a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* EQUIPEMENTS SECTION */
+.equipements {
+    padding: 3rem 0;
+    background: #fafbfc;
+}
+
+.equipements-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 2rem;
+}
+
+.equipements-title h3 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
+
+.equipements-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.booking-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rating-badge {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0a74da, #0a5baa);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(10,116,218,0.2);
+}
+
+.rating-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.rating-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.3rem;
+}
+
+.rating-text {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.amenity-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.amenity-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.amenity-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.amenity-item p {
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.cta-section {
+    text-align: center;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.9rem 2.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+    box-shadow: 0 4px 12px rgba(10,116,218,0.2);
+}
+
+.btn-primary:hover {
+    background: #0a5baa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(10,116,218,0.3);
+}
+
+@media (max-width: 768px) {
+    .equipements-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .rating-badge {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .rating-number {
+        font-size: 2rem;
+    }
+    
+    .amenities-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+}
+
+.site-footer {
+    padding: 1rem 0;
+    text-align: center;
+    font-size: .9rem;
+    color: #666;
+    margin-top: 2rem;
+}
