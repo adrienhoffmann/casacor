@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musée - Casa Cordati</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">Casa Cordati</div>
+                <div class="translate-widget" id="google_translate_element"></div>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Accueil</a>
+                <a href="musee.html">Musée</a>
+                <a href="index.html#equipements">Équipements</a>
+                <a href="index.html#localisation">Localisation</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h2>Le Musée</h2>
+            <p class="hero-location">Bruno Cordati (1890–1979)</p>
+        </div>
+    </section>
+
+    <!-- MUSEUM INTRO SECTION -->
+    <section id="musee-intro" class="museum-intro container">
+        <h3>Bruno Cordati</h3>
+        <div class="museum-intro-text">
+            <p>Peintre italien né à Barga, formé à l'Institut d'Art de Lucca (dès 1914). Son travail évolue du registre académique vers le vérisme, puis vers des orientations plus informelles après la Seconde Guerre mondiale.</p>
+            <p>À partir des années 1920, il participe à des expositions à Rome, Turin, Florence et à la Biennale de Venise (1928). Entre 1937 et 1943, il enseigne le dessin et l'histoire de l'art à l'étranger (Budapest, Paris, Bulgarie).</p>
+        </div>
+    </section>
+
+    <!-- MUSEUM HERITAGE SECTION -->
+    <section id="musee-heritage" class="museum-heritage">
+        <div class="container">
+            <h3>L'Héritage pictural</h3>
+            <div class="heritage-grid">
+                <div class="heritage-text">
+                    <h4>Style et thèmes</h4>
+                    <p>Ses œuvres couvrent portraits, paysages et scènes de vie. La palette et la lumière renvoient à la Toscane, avec une évolution sensible entre les périodes académiques, véristes puis informelles.</p>
+                    
+                    <h4>Périodes</h4>
+                    <p>Années 1920–30 : expositions nationales et personnelles. 1937–43 : enseignement à l'étranger. Après-guerre : activité plus discrète et recherches formelles.</p>
+                    
+                    <h4>Casa Cordati</h4>
+                    <p>Fin des années 1960 : achat du Palazzo Bertacchi, Via di Mezzo à Barga. Rénovation partielle, installation de l'atelier et du logement. Les œuvres exposées aujourd'hui documentent ces étapes.</p>
+                </div>
+                <div class="heritage-gallery">
+                    <div class="mini-gallery">
+                        <img src="images/casa42.jpg" alt="Œuvre du musée - Casa42">
+                        <img src="images/casa43.jpg" alt="Œuvre du musée - Casa43">
+                        <img src="images/casa35.jpg" alt="Œuvre du musée - Casa35">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MUSEUM GALLERY SECTION -->
+    <section id="musee-gallery" class="musee-gallery container">
+        <h3>La Collection</h3>
+        <div class="gallery">
+            <div class="grid">
+                <div class="thumb">
+                    <img src="images/casa42.jpg" alt="Musée - Casa42">
+                </div>
+                <div class="thumb">
+                    <img src="images/casa43.jpg" alt="Musée - Casa43">
+                </div>
+                <div class="thumb">
+                    <img src="images/casa44.jpg" alt="Musée - Casa44">
+                </div>
+                <div class="thumb">
+                    <img src="images/casa35.jpg" alt="Musée - Casa35">
+                </div>
+                <div class="thumb">
+                    <img src="images/casa36.jpg" alt="Musée - Casa36">
+                </div>
+                <div class="thumb">
+                    <img src="images/casa-pia.jpg" alt="Musée - Casa-Pia">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-backdrop"></div>
+        <button class="lightbox-close">&times;</button>
+        <div class="lightbox-container">
+            <img id="lightbox-image" src="" alt="">
+        </div>
+        <button class="lightbox-nav lightbox-prev">&lsaquo;</button>
+        <button class="lightbox-nav lightbox-next">&rsaquo;</button>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Casa Cordati. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'fr'}, 'google_translate_element');
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
